@@ -1,0 +1,138 @@
+<html>
+	<header>
+		<script src="bower_components/jquery/dist/jquery.js"></script>
+	</header>
+	<body>
+		<link rel="import" href="bower_components/polymer/polymer.html">
+		<dom-module id="dom-element">
+
+			<template>
+				<style>
+					ul {
+						list-style-type: none;
+						border-collapse:collapse;
+						position: relative;
+					    float: left;
+					    left: 50%;
+					    margin: 0 auto;
+					    padding: 0;
+					}
+					li {
+						position: relative;
+					    float: left;
+					    right: 50%;
+					    padding: 5px 10px;
+					    list-style: none;
+						border: solid black;
+						border-width: 2px 2px 2px 0px;
+						background-color: #00EE00;
+						font-weight: bold;
+						border-collapse:collapse;
+					}
+					li:first-child {
+						border-left: 2px solid black;
+					}
+					li.active {
+						background-color: #00AA00;
+						color: #FFFFFF;
+						border-collapse:collapse;
+					}
+				</style>
+			
+				<ul id="easy-pagination-pagelist">
+					<li>1</li>
+				</ul>
+			</template>
+468
+			<script>
+				/**
+				 * Easy pagination web component
+				 * 
+				 * Einfaches erstellen einer Seitennavigation. 
+				 * Nur zu Testzwecken entwickelt, um Web Compententen zu testen.
+				 * 
+				 * @author Thomas Körner (koertho@outlook.de)
+				 */
+				Polymer({
+					is: "easy-pagination",
+					properties: {
+						/**
+						* Aktuelle Seite
+						* @type Number
+						*/
+						page: {
+							type: Number,
+							value: 2,
+							oberver: 'pageChanged',
+							notify: true,
+							reflectToAttribute: true
+						},
+						/**
+						* Maximale Anzahl an Seiten
+						* @type Number
+						*/
+						maxPage: {
+							type: Number,
+							value: 1,
+							oberserver: 'maxPageChanged',
+							notify: true,
+							reflectToAttribute: true
+						}
+					},
+					/**
+					 * Neugenerierung der Seitennavigation
+					 * 
+					 * @private
+					 */
+
+					drawPagination: function () {
+						$('#easy-pagination-pagelist').empty();
+						for (var i = 1; i <= this.maxPage; i++)
+						{
+							if (this.page == i)
+								$('#easy-pagination-pagelist').append('<li class="active">' + i + '</li>');
+							else
+								$('#easy-pagination-pagelist').append('<li>' + i + '</li>');
+						}
+					},
+					ready: function() {
+						this.drawPagination();
+					},
+					
+					pageChanged: function (newVal) {
+						this.page = newVal;
+						this.drawPagination();
+					},
+					maxPageChanged: function(newVal) {
+						this.maxPage = newVal;
+						this.drawPagination();
+					},
+					/**
+					* Eine Seite weiter
+					*/
+					nextPage: function() {
+						this.page++;
+						this.drawPagination();
+					},
+					/**
+					* Eine Seite zurück
+					* @type Boolean
+					*/
+					lastPage: function() {
+						if (this.page > 1)
+						{
+							this.page--;
+							this.drawPagination();
+							return true;
+						}			
+						else 
+							return false
+							
+						
+					}
+
+				});
+			</script>
+		</dom-module>
+	</body>
+</html>

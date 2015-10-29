@@ -1,0 +1,20 @@
+{
+  "name": "easy-pagination",
+  "version": "0.1.0",
+  "description": "Provide an easy pagination",
+  "main": "easy-pagination.html",
+  "authors": [
+    "Thomas Körner"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#1.0.0"
+  }
+}

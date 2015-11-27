@@ -45,20 +45,20 @@
 			</template>
 468
 			<script>
-				/**
-				 * Easy pagination web component
-				 * 
-				 * Einfaches erstellen einer Seitennavigation. 
-				 * Nur zu Testzwecken entwickelt, um Web Compententen zu testen.
-				 * 
-				 * @author Thomas Körner (koertho@outlook.de)
-				 */
 				Polymer({
+					/**
+					 * Easy pagination web component
+					 * 
+					 * Einfaches erstellen einer Seitennavigation. 
+					 * Nur zu Testzwecken entwickelt, um Web Compententen zu testen.
+					 * 
+					 * @author Thomas Körner (koertho@outlook.de)
+					 */
 					is: "easy-pagination",
 					properties: {
 						/**
 						* Aktuelle Seite
-						* @type Number
+						* @type {Number}
 						*/
 						page: {
 							type: Number,
@@ -69,7 +69,7 @@
 						},
 						/**
 						* Maximale Anzahl an Seiten
-						* @type Number
+						* @type {Number}
 						*/
 						maxPage: {
 							type: Number,
@@ -116,7 +116,7 @@
 					},
 					/**
 					* Eine Seite zurück
-					* @type Boolean
+					* @returns {Boolean}
 					*/
 					lastPage: function() {
 						if (this.page > 1)
@@ -127,9 +127,19 @@
 						}			
 						else 
 							return false
-							
-						
+					},
+					/**
+					* Anzahl der Seiten festlegen
+					* 
+					* @params {Number} Anzahl Seiten
+					* @returns {Number} Gesetzte Anzahl Seiten
+					*/
+					setMaxPage: function(page) {
+						this.maxPage = page;
+						this.drawPagination();
+						return this.maxPage;
 					}
+					
 
 				});
 			</script>
